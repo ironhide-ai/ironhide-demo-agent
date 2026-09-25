@@ -1,0 +1,31 @@
+name: ironhide
+on:
+  pull_request:
+  push:
+    branches: [main]  # records the baseline for later PR jobs
+
+permissions:
+  contents: read       # required by actions/checkout for private repositories
+  pull-requests: write   # the action posts the result as a PR comment
+
+jobs:
+  referee:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # The agent is standard-library Python, so there are no dependencies to
+      # install. This step only pins the interpreter the agent runs on.
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: ironhide-ai/ironhide-scan@v2.0.0
+        with:
+          api_key: ${{ secrets.IRONHIDE_API_KEY }}
+          agent_id: ${{ vars.IRONHIDE_AGENT_ID }}
+          adapter: demo_agent:agent
+          cli_sha256: ${{ vars.IRONHIDE_CLI_SHA256 }}
+          # This demo gates from day one so the red is real. The Action's
+          # defaults are advisory (a failure exits 0) and a block_on value that
+          # matches no severity class; see the README.
+          advisory_mode: false
+          block_on: critical,high
