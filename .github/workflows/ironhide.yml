@@ -29,3 +29,7 @@ jobs:
           # matches no severity class; see the README.
           advisory_mode: false
           block_on: critical,high
+          # One sample per episode keeps a run to about half an hour. The red in
+          # this demo comes from a new HIGH-severity finding, which one sample
+          # observes; the statistical trend check has less data at runs: 1.
+          runs: 1

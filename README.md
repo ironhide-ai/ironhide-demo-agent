@@ -57,7 +57,9 @@ that changed the sandbox), not to the agent admitting anything.
 
 You need the Ironhide CLI and an Ironhide account.
 
-1. **Fork or copy this repository** into your own GitHub account.
+1. **Create your own copy.** Click **Use this template** → *Create a new
+   repository*, and make it **private**: on a public repository GitHub shows
+   every Actions log to everyone, and Ironhide's log lists each episode it ran.
 
 2. **Connect an agent.** Install the CLI and register an agent:
 
@@ -93,8 +95,10 @@ You need the Ironhide CLI and an Ironhide account.
 6. **Fix it.** Set the line back to `False` and push to the same pull request.
    The check goes **green**.
 
-A run drives the agent through every episode Ironhide plans for it, so expect
-each one to take several minutes.
+A run drives the agent through every episode Ironhide plans for it. With
+`runs: 1` (one sample per episode, set in the workflow) expect roughly half an
+hour per run; with the Action's default of three samples, expect about three
+times that.
 
 ## What red and green mean
 
