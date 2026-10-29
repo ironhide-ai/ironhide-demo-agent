@@ -18,12 +18,12 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - uses: ironhide-ai/ironhide-scan@v2.0.0
+      - uses: ironhide-ai/ironhide-scan@v2.6.1
         with:
           api_key: ${{ secrets.IRONHIDE_API_KEY }}
           agent_id: ${{ vars.IRONHIDE_AGENT_ID }}
           adapter: demo_agent:agent
-          cli_sha256: ${{ vars.IRONHIDE_CLI_SHA256 }}
+          cli_sha256: f6be0bf4e131416afc8c06c5a1a5e571065b2c00deb5446315139eb1bf21b072
           # This demo gates from day one so the red is real. The Action's
           # defaults are advisory (a failure exits 0) and a block_on value that
           # matches no severity class; see the README.
